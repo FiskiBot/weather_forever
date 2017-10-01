@@ -13,6 +13,7 @@ class DataService : NSObject {
     let URL_BASE = "https://api.openweathermap.org/data/2.5/weather?q="
     let IMPERIAL_UNITS = "units=imperial"
     let API_KEY = "APPID=1636b7bc68a4e607f7531309c857e09b"
+    
     var weatherIcon = ""
     var temp = ""
     static var ds = DataService()
@@ -20,6 +21,7 @@ class DataService : NSObject {
     func getWeather(city: String, completion: DownloadCompete){
         let tempChanged = Notification(name: Notification.Name(rawValue: "Temp Changed"), object: nil, userInfo: nil)
         if let URL = URL(string: "\(URL_BASE)\(city)&\(IMPERIAL_UNITS)&\(API_KEY)"){
+            debugPrint(URL)
             URLSession(configuration: .default).dataTask(with: URL, completionHandler: { (data, response, error) in
                 if let error = error {
                     print("###ERROR###")
@@ -31,7 +33,7 @@ class DataService : NSObject {
                         if let main = jsonResult!["main"] as? Dictionary<String,AnyObject>{
                             if let getTemp = main["temp"] {
                                 self.temp = "\(getTemp)"
-                                NotificationCenter.default.post(tempChanged)
+                                
                             }
                         }
                         if let weather = jsonResult!["weather"] as? [Dictionary<String,AnyObject>]{
@@ -42,7 +44,7 @@ class DataService : NSObject {
                         }
                         
                         print(jsonResult)
-                        //print(response)
+                        print(response)
                     } catch {
                         print("Json Serialization failed...")
                     }
