@@ -21,8 +21,6 @@ class ViewController: UIViewController {
     var city = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
