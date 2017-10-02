@@ -69,19 +69,41 @@
                                     <constraint firstAttribute="height" constant="150" id="adK-gU-gc4"/>
                                 </constraints>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWy-IW-tYG">
+                                <rect key="frame" x="141.5" y="518" width="37" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retryPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRW-2z-OZp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOs-OS-LVV">
+                                <rect key="frame" x="16" y="413" width="288" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="naP-23-Mry"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.071866922080516815" green="0.061573557555675507" blue="0.24366790056228638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="centerX" secondItem="gJo-qb-JfM" secondAttribute="centerX" id="2Mh-u2-WxD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QWy-IW-tYG" secondAttribute="bottom" constant="20" id="7G2-jA-NeN"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8CA-d8-bpn"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="913-PU-KfV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2f3-SP-KEA" secondAttribute="trailing" constant="8" id="AyB-iN-9Uj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nOs-OS-LVV" secondAttribute="trailing" id="FVg-JD-USs"/>
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="Hv3-to-cpg"/>
+                            <constraint firstItem="nOs-OS-LVV" firstAttribute="top" secondItem="2f3-SP-KEA" secondAttribute="bottom" constant="8" id="KLl-3H-Vdp"/>
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="top" secondItem="gJo-qb-JfM" secondAttribute="bottom" constant="49" id="Mm1-AD-wL8"/>
+                            <constraint firstItem="QWy-IW-tYG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oa5-KW-nqt"/>
                             <constraint firstItem="gJo-qb-JfM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="U71-Kd-sJm"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="top" secondItem="n1U-4F-dfD" secondAttribute="bottom" constant="16" id="juc-4a-hGN"/>
                             <constraint firstItem="gJo-qb-JfM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nWe-7i-5Ip"/>
                             <constraint firstItem="gJo-qb-JfM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qXG-vU-KyU"/>
+                            <constraint firstItem="nOs-OS-LVV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vr5-sj-dVX"/>
+                            <constraint firstItem="nOs-OS-LVV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yfg-WO-HDO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gJo-qb-JfM" secondAttribute="trailing" id="zJp-1s-8fc"/>
                         </constraints>
                     </view>
@@ -90,6 +112,8 @@
                         <outlet property="cityLbl" destination="gJo-qb-JfM" id="cfe-KA-GcK"/>
                         <outlet property="fahrenheitLbl" destination="CWP-2k-Xcq" id="38B-gu-cbL"/>
                         <outlet property="forcastImg" destination="n1U-4F-dfD" id="htD-mM-b5Z"/>
+                        <outlet property="retryButton" destination="QWy-IW-tYG" id="DWT-zY-Ydx"/>
+                        <outlet property="weatherDescriptionLbl" destination="nOs-OS-LVV" id="9BW-nO-r0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

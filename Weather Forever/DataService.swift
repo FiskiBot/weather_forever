@@ -15,6 +15,7 @@ class DataService : NSObject {
     let API_KEY = "APPID=1636b7bc68a4e607f7531309c857e09b"
     
     var weatherIcon = ""
+    var weatherDescription = ""
     var temp = ""
     static var ds = DataService()
     
@@ -39,6 +40,10 @@ class DataService : NSObject {
                         if let weather = jsonResult!["weather"] as? [Dictionary<String,AnyObject>]{
                             if let getWeather = weather[0]["icon"] {
                                 self.weatherIcon = "\(getWeather)"
+                                NotificationCenter.default.post(tempChanged)
+                            }
+                            if let getDescription = weather[0]["description"] {
+                                self.weatherDescription = "\(getDescription)"
                                 NotificationCenter.default.post(tempChanged)
                             }
                         }
