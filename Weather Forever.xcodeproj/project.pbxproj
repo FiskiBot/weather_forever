@@ -16,6 +16,7 @@
 		C16045861ED4E963002CF44E /* Weather_ForeverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16045851ED4E963002CF44E /* Weather_ForeverTests.swift */; };
 		C16045911ED4E963002CF44E /* Weather_ForeverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16045901ED4E963002CF44E /* Weather_ForeverUITests.swift */; };
 		C191FE231F77521700C314B9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C191FE221F77521700C314B9 /* DataService.swift */; };
+		C1AC21231F9BD80E0048DFBB /* CitySelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC21221F9BD80E0048DFBB /* CitySelectVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		C16045901ED4E963002CF44E /* Weather_ForeverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_ForeverUITests.swift; sourceTree = "<group>"; };
 		C16045921ED4E963002CF44E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C191FE221F77521700C314B9 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C1AC21221F9BD80E0048DFBB /* CitySelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				C191FE221F77521700C314B9 /* DataService.swift */,
 				C160456D1ED4E963002CF44E /* AppDelegate.swift */,
 				C160456F1ED4E963002CF44E /* ViewController.swift */,
+				C1AC21221F9BD80E0048DFBB /* CitySelectVC.swift */,
 				C16045711ED4E963002CF44E /* Main.storyboard */,
 				C16045771ED4E963002CF44E /* Assets.xcassets */,
 				C16045791ED4E963002CF44E /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C16045701ED4E963002CF44E /* ViewController.swift in Sources */,
+				C1AC21231F9BD80E0048DFBB /* CitySelectVC.swift in Sources */,
 				C16045761ED4E963002CF44E /* Weather_Forever.xcdatamodeld in Sources */,
 				C160456E1ED4E963002CF44E /* AppDelegate.swift in Sources */,
 				C191FE231F77521700C314B9 /* DataService.swift in Sources */,

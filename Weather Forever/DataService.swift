@@ -13,6 +13,10 @@ class DataService : NSObject {
     let URL_BASE = "https://api.openweathermap.org/data/2.5/weather?q="
     let IMPERIAL_UNITS = "units=imperial"
     let API_KEY = "APPID=1636b7bc68a4e607f7531309c857e09b"
+    let cityKey = "cityArray"
+    
+    
+    
     
     var weatherIcon = ""
     var weatherDescription = ""
