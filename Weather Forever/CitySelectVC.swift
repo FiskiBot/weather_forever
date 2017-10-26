@@ -29,7 +29,10 @@ class CitySelectVC: UIViewController {
     
     func dismissKeyboard(){
         view.endEditing(true)
-       var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+    }
+    
+    @IBAction func addCityPressed(_ sender: UIButton) {
+        var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
         
         if cityTextField.text != "" {
             cities?.append(cityTextField.text)
@@ -37,8 +40,12 @@ class CitySelectVC: UIViewController {
         }
         
         cityPicker.reloadAllComponents()
+    
     }
-
+    
+    @IBAction func checkWeather(_ sender: UIButton) {
+    }
+    
     /*
     // MARK: - Navigation
 

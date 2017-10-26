@@ -155,7 +155,20 @@
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3F-bi-AYs">
                                 <rect key="frame" x="81" y="388" width="213" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Check Weather"/>
+                                <connections>
+                                    <action selector="checkWeather:" destination="8L7-WZ-f4c" eventType="touchUpInside" id="nFy-ar-f1N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMu-vN-iHS">
+                                <rect key="frame" x="300" y="72" width="59" height="30"/>
+                                <state key="normal" title="Add City">
+                                    <color key="titleColor" red="0.29506232634303303" green="0.31246034263959388" blue="0.06203041071692339" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addCityPressed:" destination="8L7-WZ-f4c" eventType="touchUpInside" id="Ntx-0E-vja"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.176880446" green="0.91434697350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -164,6 +177,8 @@
                             <constraint firstItem="KVk-sq-2Ui" firstAttribute="top" secondItem="pYk-6e-okS" secondAttribute="bottom" constant="20" id="3X6-2S-KI1"/>
                             <constraint firstItem="pYk-6e-okS" firstAttribute="trailing" secondItem="96U-sP-74f" secondAttribute="trailingMargin" id="6Is-DS-4zB"/>
                             <constraint firstItem="e3F-bi-AYs" firstAttribute="top" secondItem="KVk-sq-2Ui" secondAttribute="bottom" constant="8" id="AU6-we-cPE"/>
+                            <constraint firstItem="MMu-vN-iHS" firstAttribute="top" secondItem="1Dt-Uy-VEy" secondAttribute="bottom" constant="8" id="WHd-dJ-BPk"/>
+                            <constraint firstItem="MMu-vN-iHS" firstAttribute="trailing" secondItem="96U-sP-74f" secondAttribute="trailingMargin" id="aI4-aI-DXV"/>
                             <constraint firstItem="pYk-6e-okS" firstAttribute="top" secondItem="1Dt-Uy-VEy" secondAttribute="bottom" constant="50" id="hTS-DK-OwD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e3F-bi-AYs" secondAttribute="trailing" constant="65" id="mEw-Ef-74R"/>
                             <constraint firstItem="KVk-sq-2Ui" firstAttribute="leading" secondItem="96U-sP-74f" secondAttribute="leading" id="oGD-R5-zQR"/>
