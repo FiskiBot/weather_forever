@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         getLocation()
         NotificationCenter.default.addObserver(self, selector: #selector (updateUI), name: Notification.Name(rawValue: "Temp Changed"), object: nil)

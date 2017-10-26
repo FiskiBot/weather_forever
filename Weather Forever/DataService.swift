@@ -14,14 +14,16 @@ class DataService : NSObject {
     let IMPERIAL_UNITS = "units=imperial"
     let API_KEY = "APPID=1636b7bc68a4e607f7531309c857e09b"
     let cityKey = "cityArray"
-    
-    
-    
-    
+    let defaultCities = ["Los Angeles", "New York", "Chicago", "Miami"]
     var weatherIcon = ""
     var weatherDescription = ""
     var temp = ""
     static var ds = DataService()
+    
+    func initializeCities(){
+        let defaultsDict : [String : AnyObject] = [cityKey:defaultCities as AnyObject]
+        UserDefaults.standard.register(defaults: defaultsDict)
+    }
     
     func getWeather(city: String, completion: DownloadCompete){
         let tempChanged = Notification(name: Notification.Name(rawValue: "Temp Changed"), object: nil, userInfo: nil)

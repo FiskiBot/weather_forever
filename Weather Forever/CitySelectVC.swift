@@ -30,10 +30,13 @@ class CitySelectVC: UIViewController {
     func dismissKeyboard(){
         view.endEditing(true)
        var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
-        if cityTextField.text != "" {
-            cities?.append(cityTextField.text as Any)
-        } 
         
+        if cityTextField.text != "" {
+            cities?.append(cityTextField.text)
+            UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
+        }
+        
+        cityPicker.reloadAllComponents()
     }
 
     /*
@@ -46,4 +49,33 @@ class CitySelectVC: UIViewController {
     }
     */
 
+}
+
+extension CitySelectVC : UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if let cityName = UserDefaults.standard.array(forKey: DataService.ds.cityKey) {
+            return "\(cityName[row])"
+        } else {
+            return "you broke it!"
+        }
+    }
+}
+
+extension CitySelectVC : UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        let cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+        if let cities = cities {
+            return cities.count
+        }
+        else {
+            return 1
+        }
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
 }

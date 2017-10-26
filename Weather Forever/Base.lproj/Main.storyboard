@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -109,6 +109,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zlk-UC-F3b">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="ZjT-BL-SJ4">
+                            <color key="tintColor" red="1" green="0.91740038140000002" blue="0.4181594407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="8L7-WZ-f4c" kind="show" id="FkQ-1I-EEa"/>
                             </connections>
@@ -147,6 +148,10 @@
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVk-sq-2Ui">
                                 <rect key="frame" x="0.0" y="164" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8L7-WZ-f4c" id="IdH-C5-0au"/>
+                                    <outlet property="delegate" destination="8L7-WZ-f4c" id="znZ-WK-UVh"/>
+                                </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3F-bi-AYs">
                                 <rect key="frame" x="81" y="388" width="213" height="30"/>
@@ -184,6 +189,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bAP-4W-be7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22662710359999999" green="0.22415962310000001" blue="0.86633743519999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
