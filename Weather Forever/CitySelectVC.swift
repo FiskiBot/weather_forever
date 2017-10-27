@@ -13,6 +13,7 @@ class CitySelectVC: UIViewController {
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var cityPicker: UIPickerView!
     @IBOutlet weak var getWeatherBtn: UIButton!
+    let backToWeather = "backToWeather"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class CitySelectVC: UIViewController {
         view.endEditing(true)
     }
     
+    
+    //MARK: Buttons
     @IBAction func addCityPressed(_ sender: UIButton) {
         var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
         
@@ -42,8 +45,24 @@ class CitySelectVC: UIViewController {
         cityPicker.reloadAllComponents()
     
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let weatherView = segue.destination as? ViewController {
+            
+            //TODO: Make city label appear when selecting a manual city.
+            //TODO: Hide or change the retry button.
+            weatherView.city = UserDefaults.standard.array(forKey: DataService.ds.cityKey)![cityPicker.selectedRow(inComponent: 0)] as! String
+            weatherView.updateUI()
+        }
+    }
     @IBAction func checkWeather(_ sender: UIButton) {
+        let city = UserDefaults.standard.array(forKey: DataService.ds.cityKey)![cityPicker.selectedRow(inComponent: 0)] as! String
+        let parsedCity = city.replacingOccurrences(of: " ", with: "")
+        DataService.ds.getWeather(city: parsedCity) {
+            
+        }
+        
+        performSegue(withIdentifier: backToWeather, sender: self)
+        
     }
     
     /*

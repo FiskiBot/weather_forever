@@ -69,13 +69,6 @@
                                     <constraint firstAttribute="height" constant="150" id="adK-gU-gc4"/>
                                 </constraints>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWy-IW-tYG">
-                                <rect key="frame" x="169" y="617" width="37" height="30"/>
-                                <state key="normal" title="Retry"/>
-                                <connections>
-                                    <action selector="retryPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRW-2z-OZp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOs-OS-LVV">
                                 <rect key="frame" x="16" y="457" width="343" height="27"/>
                                 <constraints>
@@ -85,11 +78,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWy-IW-tYG">
+                                <rect key="frame" x="306" y="617" width="53" height="30"/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="retryPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRW-2z-OZp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.071866922080516815" green="0.061573557555675507" blue="0.24366790056228638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QWy-IW-tYG" secondAttribute="bottom" constant="20" id="0t7-Vx-d1K"/>
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="centerX" secondItem="gJo-qb-JfM" secondAttribute="centerX" id="2Mh-u2-WxD"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QWy-IW-tYG" secondAttribute="bottom" constant="20" id="7G2-jA-NeN"/>
+                            <constraint firstItem="QWy-IW-tYG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="6Yc-Pu-ka2"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8CA-d8-bpn"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="913-PU-KfV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2f3-SP-KEA" secondAttribute="trailing" constant="8" id="AyB-iN-9Uj"/>
@@ -97,7 +98,6 @@
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="Hv3-to-cpg"/>
                             <constraint firstItem="nOs-OS-LVV" firstAttribute="top" secondItem="2f3-SP-KEA" secondAttribute="bottom" constant="8" id="KLl-3H-Vdp"/>
                             <constraint firstItem="n1U-4F-dfD" firstAttribute="top" secondItem="gJo-qb-JfM" secondAttribute="bottom" constant="49" id="Mm1-AD-wL8"/>
-                            <constraint firstItem="QWy-IW-tYG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oa5-KW-nqt"/>
                             <constraint firstItem="gJo-qb-JfM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="U71-Kd-sJm"/>
                             <constraint firstItem="2f3-SP-KEA" firstAttribute="top" secondItem="n1U-4F-dfD" secondAttribute="bottom" constant="16" id="juc-4a-hGN"/>
                             <constraint firstItem="gJo-qb-JfM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nWe-7i-5Ip"/>
@@ -190,9 +190,11 @@
                         <outlet property="cityPicker" destination="KVk-sq-2Ui" id="XKB-oK-2LB"/>
                         <outlet property="cityTextField" destination="pYk-6e-okS" id="8ae-fK-jUM"/>
                         <outlet property="getWeatherBtn" destination="e3F-bi-AYs" id="Xbe-c2-drq"/>
+                        <segue destination="DQq-Z1-via" kind="unwind" identifier="backToWeather" unwindAction="unwindToVC1WithSegue:" id="7WW-rD-itu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMz-9A-2Hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DQq-Z1-via" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1323.75" y="132.04225352112675"/>
         </scene>

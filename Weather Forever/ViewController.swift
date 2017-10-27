@@ -21,13 +21,17 @@ class ViewController: UIViewController {
     var city = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        getLocation()
+        NotificationCenter.default.addObserver(self, selector: #selector (updateUI), name: Notification.Name(rawValue: "Temp Changed"), object: nil)
     }
     
     
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+        cityLbl.text = city
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        getLocation()
-        NotificationCenter.default.addObserver(self, selector: #selector (updateUI), name: Notification.Name(rawValue: "Temp Changed"), object: nil)
+        
     }
     func handleError() {
         let locError = UIAlertController(title: "Could Not find your location", message: "Please use this in an area that we can find you and press retry.", preferredStyle: .alert)
