@@ -20,6 +20,10 @@ class DataService : NSObject {
     var temp = ""
     static var ds = DataService()
     
+    func resetCities() {
+        UserDefaults.standard.set(defaultCities, forKey: cityKey)
+    }
+    
     func initializeCities(){
         let defaultsDict : [String : AnyObject] = [cityKey:defaultCities as AnyObject]
         UserDefaults.standard.register(defaults: defaultsDict)

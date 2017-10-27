@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     
     @IBAction func retryPressed(_ sender: Any) {
         getLocation()
-        retryButton.isHidden = true
+        
     }
     
 }

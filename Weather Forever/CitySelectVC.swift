@@ -30,20 +30,7 @@ class CitySelectVC: UIViewController {
     
     func dismissKeyboard(){
         view.endEditing(true)
-    }
-    
-    
-    //MARK: Buttons
-    @IBAction func addCityPressed(_ sender: UIButton) {
-        var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
-        
-        if cityTextField.text != "" {
-            cities?.append(cityTextField.text)
-            UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
-        }
-        
-        cityPicker.reloadAllComponents()
-    
+        cityTextField.text = ""
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let weatherView = segue.destination as? ViewController {
@@ -54,6 +41,22 @@ class CitySelectVC: UIViewController {
             weatherView.updateUI()
         }
     }
+    
+    
+    //MARK: Buttons
+    @IBAction func addCityPressed(_ sender: UIButton) {
+        var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+        
+        if cityTextField.text != "" {
+            cities?.append(cityTextField.text)
+            UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
+            dismissKeyboard()
+        }
+        
+        cityPicker.reloadAllComponents()
+    
+    }
+   
     @IBAction func checkWeather(_ sender: UIButton) {
         let city = UserDefaults.standard.array(forKey: DataService.ds.cityKey)![cityPicker.selectedRow(inComponent: 0)] as! String
         let parsedCity = city.replacingOccurrences(of: " ", with: "")
@@ -65,6 +68,12 @@ class CitySelectVC: UIViewController {
         
     }
     
+    @IBAction func resetCities(_ sender: UIButton) {
+        
+        DataService.ds.resetCities()
+        cityPicker.reloadAllComponents()
+        dismissKeyboard()
+    }
     /*
     // MARK: - Navigation
 
