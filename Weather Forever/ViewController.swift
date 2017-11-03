@@ -43,12 +43,12 @@ class ViewController: UIViewController {
     
     func updateUI() {
         if DataService.ds.temp != "" {
-            let farenheitVal = round(Double(DataService.ds.temp)!)
-            let celciusVal = round((farenheitVal - 32) * 5 / 9)
+            let farenheitVal = (Double(DataService.ds.temp)!)
+            let celciusVal = ((farenheitVal - 32) * 5 / 9)
             let downloadedImg = DataService.ds.weatherIcon
             DispatchQueue.main.async {
-                self.fahrenheitLbl.text = "\(farenheitVal)°F"
-                self.celciusLbl.text = "\(celciusVal)°C"
+                self.fahrenheitLbl.text = String(format: "%.1f", farenheitVal) + "°F"
+                self.celciusLbl.text = String(format: "%.1f", celciusVal) + "°C"
                 self.forcastImg.image = UIImage(named: downloadedImg)
                 self.weatherDescriptionLbl.text = DataService.ds.weatherDescription
                 

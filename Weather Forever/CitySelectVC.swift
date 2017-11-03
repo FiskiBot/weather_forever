@@ -14,6 +14,7 @@ class CitySelectVC: UIViewController {
     @IBOutlet weak var cityPicker: UIPickerView!
     @IBOutlet weak var getWeatherBtn: UIButton!
     let backToWeather = "backToWeather"
+    var citiesInOrder : Array = [""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class CitySelectVC: UIViewController {
             
             //TODO: Make city label appear when selecting a manual city.
             //TODO: Hide or change the retry button.
-            weatherView.city = UserDefaults.standard.array(forKey: DataService.ds.cityKey)![cityPicker.selectedRow(inComponent: 0)] as! String
+            weatherView.city = citiesInOrder[cityPicker.selectedRow(inComponent: 0)] 
             weatherView.updateUI()
         }
     }
@@ -58,8 +59,8 @@ class CitySelectVC: UIViewController {
     }
    
     @IBAction func checkWeather(_ sender: UIButton) {
-        let city = UserDefaults.standard.array(forKey: DataService.ds.cityKey)![cityPicker.selectedRow(inComponent: 0)] as! String
-        let parsedCity = city.replacingOccurrences(of: " ", with: "")
+        let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
+        let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
         DataService.ds.getWeather(city: parsedCity) {
             
         }
@@ -90,7 +91,10 @@ extension CitySelectVC : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if let cityName = UserDefaults.standard.array(forKey: DataService.ds.cityKey) {
-            return "\(cityName[row])"
+            let reversed = cityName.reversed()
+            let orderedCities = Array(reversed)
+            citiesInOrder = orderedCities as! Array
+            return "\(orderedCities[row])"
         } else {
             return "you broke it!"
         }
