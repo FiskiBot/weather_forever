@@ -24,10 +24,6 @@ class CitySelectVC: UIViewController {
         view.addGestureRecognizer(whack)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func dismissKeyboard(){
         view.endEditing(true)

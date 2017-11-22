@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         locError.addAction(okButton)
         present(locError, animated: true, completion: nil)
-        self.retryButton.isHidden = false
+        
     }
     
     func updateUI() {
@@ -58,7 +58,8 @@ class ViewController: UIViewController {
     
     @IBAction func retryPressed(_ sender: Any) {
         getLocation()
-        
+        print("Get Loc Pressed")
+        print("Current Loc: \(city)")
     }
     
 }
