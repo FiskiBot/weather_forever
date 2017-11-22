@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CitySelectVC: UIViewController {
+class CitySelectVC: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var cityPicker: UIPickerView!
@@ -18,6 +18,7 @@ class CitySelectVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
         let whack = UITapGestureRecognizer(target: self, action: #selector(CitySelectVC.dismissKeyboard))
@@ -41,7 +42,8 @@ class CitySelectVC: UIViewController {
     
     
     //MARK: Buttons
-    @IBAction func addCityPressed(_ sender: UIButton) {
+    
+    @IBAction func EndTextField(_ sender: Any) {
         var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
         
         if cityTextField.text != "" {
@@ -49,11 +51,17 @@ class CitySelectVC: UIViewController {
             UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
             dismissKeyboard()
         }
+        let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
+        let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
+        DataService.ds.getWeather(city: parsedCity) {
+            
+        }
         
+        performSegue(withIdentifier: backToWeather, sender: self)
         cityPicker.reloadAllComponents()
-    
     }
-   
+    
+
     @IBAction func checkWeather(_ sender: UIButton) {
         let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
         let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
