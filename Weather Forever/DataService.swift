@@ -15,6 +15,7 @@ class DataService : NSObject {
     let API_KEY = "APPID=1636b7bc68a4e607f7531309c857e09b"
     let cityKey = "cityArray"
     let defaultCities = ["Los Angeles", "New York", "Chicago", "Miami"]
+    var selectedCity = ""
     var weatherIcon = ""
     var weatherDescription = ""
     var temp = ""

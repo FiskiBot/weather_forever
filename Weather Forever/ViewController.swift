@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
+        
         if DataService.ds.temp != "" {
             let farenheitVal = (Double(DataService.ds.temp)!)
             let celciusVal = ((farenheitVal - 32) * 5 / 9)

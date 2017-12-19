@@ -10,12 +10,13 @@ import UIKit
 
 class CitySelectVC: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var cityPicker: UIPickerView!
+    
     @IBOutlet weak var getWeatherBtn: UIButton!
     let backToWeather = "backToWeather"
     var citiesInOrder : Array = [""]
-    
+    var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,8 +36,9 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
             
             //TODO: Make city label appear when selecting a manual city.
             //TODO: Hide or change the retry button.
-            weatherView.city = citiesInOrder[cityPicker.selectedRow(inComponent: 0)] 
+            
             weatherView.updateUI()
+            
         }
     }
     
@@ -44,30 +46,25 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
     //MARK: Buttons
     
     @IBAction func EndTextField(_ sender: Any) {
-        var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+        
         
         if cityTextField.text != "" {
             cities?.append(cityTextField.text)
             UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
             dismissKeyboard()
         }
-        let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
-        let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
-        DataService.ds.getWeather(city: parsedCity) {
-            
-        }
+    
+        
         
         performSegue(withIdentifier: backToWeather, sender: self)
-        cityPicker.reloadAllComponents()
+        //cityPicker.reloadAllComponents()
     }
     
 
     @IBAction func checkWeather(_ sender: UIButton) {
-        let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
-        let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
-        DataService.ds.getWeather(city: parsedCity) {
-            
-        }
+        //let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
+        //let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
+        
         
         performSegue(withIdentifier: backToWeather, sender: self)
         
@@ -76,7 +73,7 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
     @IBAction func resetCities(_ sender: UIButton) {
         
         DataService.ds.resetCities()
-        cityPicker.reloadAllComponents()
+        tableView.reloadData()
         dismissKeyboard()
     }
     /*
@@ -91,34 +88,77 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
 
 }
 
-extension CitySelectVC : UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if let cityName = UserDefaults.standard.array(forKey: DataService.ds.cityKey) {
-            let reversed = cityName.reversed()
-            let orderedCities = Array(reversed)
-            citiesInOrder = orderedCities as! Array
-            return "\(orderedCities[row])"
-        } else {
-            return "you broke it!"
+
+//MARK: TableView
+
+extension CitySelectVC : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: backToWeather, sender: self)
+        if let cities = cities {
+            DataService.ds.selectedCity = cities[indexPath.row] as! String
         }
+        
+        
     }
 }
 
-extension CitySelectVC : UIPickerViewDataSource {
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        let cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
-        if let cities = cities {
+extension CitySelectVC : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let cities =  cities {
             return cities.count
-        }
-        else {
+        } else {
             return 1
         }
-        
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell") as! CityCell
+        
+        if let cities = cities {
+            cell.cityLbl.text = cities[indexPath.row] as! String
+            return cell
+            
+        } else {
+            return UITableViewCell()
+        }
+        
+    
+    
 }
+//MARK: Picker View
+//TODO: Replace picker view with a table view
+//I really don't like the whole picker view style and I want to replace it with a table view.
+//extension CitySelectVC : UIPickerViewDelegate {
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//
+//        if let cityName = UserDefaults.standard.array(forKey: DataService.ds.cityKey) {
+//            let reversed = cityName.reversed()
+//            let orderedCities = Array(reversed)
+//            citiesInOrder = orderedCities as! Array
+//            return "\(orderedCities[row])"
+//        } else {
+//            return "you broke it!"
+//        }
+//    }
+//}
+//
+//extension CitySelectVC : UIPickerViewDataSource {
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//
+//        let cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+//        if let cities = cities {
+//            return cities.count
+//        }
+//        else {
+//            return 1
+//        }
+//
+//    }
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+}
+
