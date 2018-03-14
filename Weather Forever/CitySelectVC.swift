@@ -12,20 +12,23 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cityTextField: UITextField!
-    
+
     @IBOutlet weak var getWeatherBtn: UIButton!
     let backToWeather = "backToWeather"
     var citiesInOrder : Array = [""]
     var cities = UserDefaults.standard.array(forKey: DataService.ds.cityKey)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
-        let whack = UITapGestureRecognizer(target: self, action: #selector(CitySelectVC.dismissKeyboard))
-        view.addGestureRecognizer(whack)
+//        let whack = UITapGestureRecognizer(target: self, action: #selector(CitySelectVC.dismissKeyboard))
+//        view.addGestureRecognizer(whack)
     }
-
+    
     
     func dismissKeyboard(){
         view.endEditing(true)
@@ -34,36 +37,23 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let weatherView = segue.destination as? ViewController {
             
+            print("Back to Main View")
             //TODO: Make city label appear when selecting a manual city.
             //TODO: Hide or change the retry button.
             
-            weatherView.updateUI()
-            
+            DataService.ds.getWeather(city: DataService.ds.selectedCity, completion: {
+               
+                DispatchQueue.main.async {
+                    weatherView.city = DataService.ds.selectedCity
+                    weatherView.updateUI()
+                }
+            })
         }
     }
-    
-    
-    //MARK: Buttons
-    
-    @IBAction func EndTextField(_ sender: Any) {
-        
-        
-        if cityTextField.text != "" {
-            cities?.append(cityTextField.text)
-            UserDefaults.standard.set(cities, forKey: DataService.ds.cityKey)
-            dismissKeyboard()
-        }
-    
-        
-        
-        performSegue(withIdentifier: backToWeather, sender: self)
-        //cityPicker.reloadAllComponents()
-    }
-    
 
+    //MARK: Buttons
     @IBAction func checkWeather(_ sender: UIButton) {
-        //let selectedCity = citiesInOrder[cityPicker.selectedRow(inComponent: 0)]
-        //let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "")
+        
         
         
         performSegue(withIdentifier: backToWeather, sender: self)
@@ -93,13 +83,16 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
 
 extension CitySelectVC : UITableViewDelegate {
     
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: backToWeather, sender: self)
+        print("Selected")
+        
         if let cities = cities {
-            DataService.ds.selectedCity = cities[indexPath.row] as! String
+            let selectedCity = cities[indexPath.row] as! String
+            let parsedCity = selectedCity.replacingOccurrences(of: " ", with: "+")
+            DataService.ds.selectedCity = parsedCity
         }
-        
-        
+        performSegue(withIdentifier: backToWeather, sender: self)
     }
 }
 
@@ -114,19 +107,17 @@ extension CitySelectVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell") as! CityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Basic") as! UITableViewCell
         
         if let cities = cities {
-            cell.cityLbl.text = cities[indexPath.row] as! String
+            cell.textLabel?.text = cities[indexPath.row] as! String
             return cell
             
         } else {
             return UITableViewCell()
         }
-        
-    
-    
 }
+    
 //MARK: Picker View
 //TODO: Replace picker view with a table view
 //I really don't like the whole picker view style and I want to replace it with a table view.

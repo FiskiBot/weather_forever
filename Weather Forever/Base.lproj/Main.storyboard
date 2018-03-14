@@ -163,9 +163,8 @@
                                     <action selector="resetCities:" destination="8L7-WZ-f4c" eventType="touchUpInside" id="sn1-l0-6FY"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Nk-XM-LgS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Nk-XM-LgS">
                                 <rect key="frame" x="16" y="88" width="288" height="296"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" rowHeight="77" id="eSZ-Em-WXM" customClass="CityCell" customModule="Weather_Forever" customModuleProvider="target">
@@ -175,7 +174,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="76.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-VY-MI6">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-VY-MI6">
                                                     <rect key="frame" x="15" y="11" width="258" height="55"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -193,10 +192,27 @@
                                             <outlet property="cityLbl" destination="gN0-VY-MI6" id="p51-GI-AWZ"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Basic" textLabel="dzp-C3-98n" rowHeight="77" style="IBUITableViewCellStyleDefault" id="tJe-8W-q0S" customClass="CityCell" customModule="Weather_Forever" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="105" width="288" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tJe-8W-q0S" id="kv8-4t-Ecs">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="76.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dzp-C3-98n">
+                                                    <rect key="frame" x="15" y="0.0" width="258" height="76.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="8L7-WZ-f4c" id="Fzx-0R-K6T"/>
-                                    <outlet property="delegate" destination="8L7-WZ-f4c" id="3Y0-3E-Fjr"/>
+                                    <outlet property="dataSource" destination="8L7-WZ-f4c" id="YbK-jv-eGT"/>
+                                    <outlet property="delegate" destination="8L7-WZ-f4c" id="a6i-mc-xl5"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -205,8 +221,13 @@
                             <constraint firstItem="pYk-6e-okS" firstAttribute="leading" secondItem="96U-sP-74f" secondAttribute="leadingMargin" id="2du-JF-Uht"/>
                             <constraint firstItem="rQ4-8O-8gY" firstAttribute="top" secondItem="1Dt-Uy-VEy" secondAttribute="bottom" constant="8" id="4Ih-gK-DMN"/>
                             <constraint firstItem="pYk-6e-okS" firstAttribute="trailing" secondItem="96U-sP-74f" secondAttribute="trailingMargin" id="6Is-DS-4zB"/>
+                            <constraint firstItem="9Nk-XM-LgS" firstAttribute="trailing" secondItem="pYk-6e-okS" secondAttribute="trailing" id="DII-5w-Aoa"/>
+                            <constraint firstItem="9Nk-XM-LgS" firstAttribute="top" secondItem="pYk-6e-okS" secondAttribute="bottom" constant="8" symbolic="YES" id="GA6-Fc-P2S"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rQ4-8O-8gY" secondAttribute="trailingMargin" id="Nle-TL-Xfe"/>
                             <constraint firstItem="rQ4-8O-8gY" firstAttribute="leading" secondItem="96U-sP-74f" secondAttribute="leadingMargin" id="RBX-5f-bjn"/>
                             <constraint firstItem="pYk-6e-okS" firstAttribute="top" secondItem="1Dt-Uy-VEy" secondAttribute="bottom" constant="50" id="hTS-DK-OwD"/>
+                            <constraint firstItem="ZGY-QZ-8M7" firstAttribute="top" secondItem="9Nk-XM-LgS" secondAttribute="bottom" constant="120" id="mTU-j9-coa"/>
+                            <constraint firstItem="9Nk-XM-LgS" firstAttribute="leading" secondItem="pYk-6e-okS" secondAttribute="leading" id="yzL-Lb-Z7m"/>
                         </constraints>
                     </view>
                     <connections>

@@ -52,7 +52,7 @@ class ViewController: UIViewController {
                 self.celciusLbl.text = String(format: "%.1f", celciusVal) + "°C"
                 self.forcastImg.image = UIImage(named: downloadedImg)
                 self.weatherDescriptionLbl.text = DataService.ds.weatherDescription
-                
+                self.cityLbl.text = DataService.ds.selectedCity.replacingOccurrences(of: "+", with: " ")
             }
         }
     }
@@ -82,7 +82,8 @@ extension ViewController : CLLocationManagerDelegate {
                 if let placemarks = placemarks {
                     for mark in placemarks {
                         print(mark.locality)
-                        self.cityLbl.text = mark.locality
+                        DataService.ds.selectedCity = mark.locality!
+                        self.cityLbl.text = DataService.ds.selectedCity
                         if let parsedLoc = mark.locality?.replacingOccurrences(of: " ", with: "_") {
                             DataService.ds.getWeather(city: parsedLoc, completion: {
                                 
