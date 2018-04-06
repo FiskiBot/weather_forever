@@ -151,10 +151,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <action selector="EndTextField:" destination="8L7-WZ-f4c" eventType="editingDidEnd" id="8Ti-M3-jqN"/>
-                                    <outlet property="delegate" destination="8L7-WZ-f4c" id="dYi-8Y-VKZ"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQ4-8O-8gY">
                                 <rect key="frame" x="16" y="8" width="82" height="30"/>
@@ -231,7 +227,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cityTextField" destination="pYk-6e-okS" id="8ae-fK-jUM"/>
+                        <outlet property="cityTextField" destination="pYk-6e-okS" id="obt-v2-qnV"/>
                         <outlet property="tableView" destination="9Nk-XM-LgS" id="lJe-ur-RHp"/>
                         <segue destination="DQq-Z1-via" kind="unwind" identifier="backToWeather" unwindAction="unwindToVC1WithSegue:" id="7WW-rD-itu"/>
                     </connections>

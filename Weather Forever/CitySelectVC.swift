@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CitySelectVC: UIViewController, UITextViewDelegate {
+class CitySelectVC: UIViewController{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cityTextField: UITextField!
@@ -21,7 +21,7 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        cityTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -29,11 +29,7 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
 //        view.addGestureRecognizer(whack)
     }
     
-    
-    func dismissKeyboard(){
-        view.endEditing(true)
-        cityTextField.text = ""
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let weatherView = segue.destination as? ViewController {
             
@@ -64,7 +60,7 @@ class CitySelectVC: UIViewController, UITextViewDelegate {
         
         DataService.ds.resetCities()
         tableView.reloadData()
-        dismissKeyboard()
+        
     }
     /*
     // MARK: - Navigation
@@ -151,5 +147,23 @@ extension CitySelectVC : UITableViewDataSource {
 //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
 //        return 1
 //    }
+    
 }
 
+extension CitySelectVC : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cityTextField.resignFirstResponder()
+        return true
+    }
+    
+    
+    /**
+     * Called when the user click on the view (outside the UITextField).
+     */
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+}
