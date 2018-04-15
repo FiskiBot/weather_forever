@@ -48,18 +48,18 @@ class CitySelectVC: UIViewController{
     }
 
     //MARK: Buttons
-    @IBAction func checkWeather(_ sender: UIButton) {
-        
-        
-        
-        performSegue(withIdentifier: backToWeather, sender: self)
-        
-    }
+ 
     
     @IBAction func resetCities(_ sender: UIButton) {
         
+        
         DataService.ds.resetCities()
-        tableView.reloadData()
+        UserDefaults.standard.synchronize()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        performSegue(withIdentifier: backToWeather, sender: self)
+        
         
     }
     /*
@@ -153,6 +153,17 @@ extension CitySelectVC : UITableViewDataSource {
 extension CitySelectVC : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cityTextField.resignFirstResponder()
+        
+        cities?.append(cityTextField.text)
+        UserDefaults.standard.set(cities, forKey:"cityArray")
+        tableView.reloadData()
+        if let enteredCity = cityTextField.text {
+            DataService.ds.selectedCity = enteredCity
+            
+        }
+        cityTextField.text = ""
+        
+        performSegue(withIdentifier: backToWeather, sender: self)
         return true
     }
     
